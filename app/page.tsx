@@ -1,101 +1,94 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+export default function PlantasMedicinaisModernas() {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  const plantas = [
+    {
+      nome: "Camomila",
+      nomeEspecifico: "Matricaria chamomilla",
+      origem: "Europa e oeste da Ásia",
+      doenca: "Ansiedade e insônia",
+      preparo: "Infusão das flores secas em água quente por 5-10 minutos.",
+      imagem: "/camomila.jpg",
+    },
+    {
+      nome: "Aloe Vera",
+      nomeEspecifico: "Aloe barbadensis miller",
+      origem: "Península Arábica",
+      doenca: "Queimaduras e problemas de pele",
+      preparo: "Aplicação direta do gel da folha na pele afetada.",
+      imagem: "/aloe-vera.webp",
+    },
+    {
+      nome: "Gengibre",
+      nomeEspecifico: "Zingiber officinale",
+      origem: "Sudeste Asiático",
+      doenca: "Náuseas e problemas digestivos",
+      preparo: "Chá feito com raiz fresca ralada, fervida por 10 minutos.",
+      imagem: "/gengibre.jpeg",
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="bg-gradient-to-br from-green-700 via-emerald-400 to-teal-900 p-8 lg:min-h-[91.5vh] min-h-screen">
+      <h1 className="text-5xl font-bold text-center text-white underline mb-12 tracking-tight">
+        Plantas Medicinais
+      </h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {plantas.map((planta, index) => (
+          <motion.div
+            key={index}
+            layoutId={`card-${index}`}
+            onClick={() =>
+              setExpandedCard(expandedCard === index ? null : index)
+            }
+            className="cursor-pointer"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <div className="bg-blue-800 bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+              <div className="relative">
+                <img
+                  src={planta.imagem}
+                  alt={planta.nome}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
+                <h2 className="absolute bottom-4 left-4 text-2xl font-semibold text-white">
+                  {planta.nome}
+                </h2>
+              </div>
+              <div className="p-6">
+                <p className="text-white font-semibold mb-2">
+                  {planta.nomeEspecifico}
+                </p>
+                {expandedCard === index && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="text-emerald-900 mb-2">
+                      <span className="font-semibold">Origem:</span>{" "}
+                      {planta.origem}
+                    </p>
+                    <p className="text-emerald-900 mb-2">
+                      <span className="font-semibold">Uso:</span>{" "}
+                      {planta.doenca}
+                    </p>
+                    <p className="text-emerald-900">
+                      <span className="font-semibold">Preparo:</span>{" "}
+                      {planta.preparo}
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
