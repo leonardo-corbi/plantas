@@ -61,7 +61,7 @@ export default function PlantasMedicinaisModernas() {
                 </h2>
               </div>
               <div className="p-6">
-                <p className="text-white font-semibold mb-2">
+                <p className="text-white font-semibold mb-2 italic">
                   {planta.nomeEspecifico}
                 </p>
                 {expandedCard === index && (
